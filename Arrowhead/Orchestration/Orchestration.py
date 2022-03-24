@@ -17,9 +17,11 @@ class Orchestrator:
     # Raises Exception if the http resonse code from the orchestrator is not 2xx or 3xx
     def orchestrate(self):
         config = OrchestrationConfig.loadConfig()
-        cloudConfig = config["orchestrationConfig"]
         orchRequest = config["orchestrationRequest"]
+        cloudConfig = config["orchestrationConfig"]
         systemConfig = SystemConfig.loadConfig()
+        certConfig = systemConfig["cert"]
+        
 
         # build the adress to request
         adress = cloudConfig["ip"] + ":" + str(cloudConfig["port"]) + "/orchestrator/orchestration"
@@ -35,7 +37,7 @@ class Orchestrator:
             # Need to disable warning because AH main cert is not trusted
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
             # Need to not verify cert because AH main cert is not trusted (verify=False)
-            response = post("https://" + adress, pkcs12_filename=cloudConfig["Cloud_cert"], pkcs12_password=cloudConfig["cert_pass"], verify=False, json=payload)
+            response = post("https://" + adress, pkcs12_filename=certConfig["cloud_cert"], pkcs12_password=certConfig["cert_pass"], verify=False, json=payload)
             # Reset warnings in case we need to verify other requests
             warnings.resetwarnings()
         else :
@@ -53,13 +55,15 @@ class Orchestrator:
         config = OrchestrationConfig.loadConfig()
 
         cloudConfig = config["orchestrationConfig"]
+        systemConfig = SystemConfig.loadConfig()
+        certConfig = systemConfig["cert"]
 
         adress = cloudConfig["ip"] + ":" + str(cloudConfig["port"]) + "/orchestrator/echo"
         if cloudConfig["secure"]:
             # Need to disable warning because AH main cert is not trusted
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
             # Need to not verify cert because AH main cert is not trusted (verify=False)
-            response = get("https://" + adress, pkcs12_filename=cloudConfig["Cloud_cert"], pkcs12_password=cloudConfig["cert_pass"], verify=False)
+            response = get("https://" + adress, pkcs12_filename=certConfig["cloud_cert"], pkcs12_password=certConfig["cert_pass"], verify=False)
             # Reset warnings in case we need to verify other requests
             warnings.resetwarnings()
         else:

@@ -27,8 +27,6 @@
     "orchestrationConfig": {   
         "ip" : "127.0.0.1",
         "port" : 8441,
-        "secure": true,
-        "Cloud_cert": "Arrowhead/certificates/cardemoconsumer.p12",
-        "cert_pass": "123456"
+        "secure": true
     }
 }
