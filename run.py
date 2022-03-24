@@ -9,3 +9,4 @@ if __name__ == "__main__":
     # orch.orchestrate()
     eh = EventHandler()
     eh.testConnection()
+    eh.subscribe()

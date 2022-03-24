@@ -1,0 +1,17 @@
+{
+    "event-type": "test1",
+    "filterMetadata": {
+        "prop1": "prop2"
+    },
+    "nofifyUri": "/test/data",
+    "sources": [
+        {
+            "address": "127.0.0.1",
+            "authenticationInfo": "",
+            "metadata": {
+            },
+            "port": 8090,
+            "systemName": "testare"
+          }
+    ]
+}

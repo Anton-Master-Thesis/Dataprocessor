@@ -1,3 +1,4 @@
+from Arrowhead.EventHandler.Subscriptions import SubscriptionManager
 from Arrowhead.Orchestration.Orchestration import Orchestrator
 from Arrowhead import SystemConfig
 from requests_pkcs12 import get, post
@@ -43,5 +44,16 @@ class EventHandler:
 
         if response.status_code != requests.codes.ok:
             raise Exception(response.status_code, response.text)
+
+    def subscribe(self):
+        SubscriptionManager.loadSubscriptions()
         
-        print(response.status_code)
+        security = self.ehDesc["secure"]
+        ehSystem = self.ehDesc["provider"]
+
+        systemConfig = SystemConfig.loadConfig()
+        certConfig = systemConfig["cert"]
+
+        adress = ehSystem["address"] + ":" + str(ehSystem["port"]) + "/eventhandler/echo"
+
+        pass
