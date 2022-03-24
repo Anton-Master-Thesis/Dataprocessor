@@ -3,15 +3,5 @@
     "filterMetadata": {
         "prop1": "prop2"
     },
-    "notifyUri": "/test/data",
-    "sources": [
-        {
-            "address": "127.0.0.1",
-            "authenticationInfo": "",
-            "metadata": {
-            },
-            "port": 8090,
-            "systemName": "testare"
-          }
-    ]
+    "notifyUri": "/test/data"
 }
