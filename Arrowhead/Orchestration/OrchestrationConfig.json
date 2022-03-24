@@ -1,32 +1,34 @@
 {
-    "system": {
-        "systemName": "systemRegistry",
-        "address": "127.0.0.1",
-        "port": 8910,
-        "authenticationInfo": ""
-    },
-    "requestedService": {
-        "serviceDefinitionRequirement": "event-subscribe",
-        "interfaceRequirements": [
-            "HTTP-SECURE-JSON",
-            "HTTP-INSECURE-JSON"
-        ],
-        "securityRequirements": [
-            "CERTIFICATE",
-            "NOT_SECURE"
-        ],
-        "metadataRequirements": {
-            "req1": "req2"
+    "orchestrationRequest": {
+        "system": {
+            "systemName": "cardemoconsumer",
+            "address": "127.0.0.1",
+            "port": 8910,
+            "authenticationInfo": ""
+        },
+        "requestedService": {
+            "serviceDefinitionRequirement": "event-subscribe",
+            "interfaceRequirements": [
+                "HTTP-SECURE-JSON",
+                "HTTP-INSECURE-JSON"
+            ],
+            "securityRequirements": [
+                "CERTIFICATE",
+                "NOT_SECURE"
+            ],
+            "metadataRequirements": {
+                "req1": "req2"
+            }
+        },
+        "orchestrationFlags": {
+            "overrideStore": true
         }
     },
-    "orchestrationFlags": {
-        "overrideStore": true
-    },
-    "orchestration": {   
+    "orchestrationConfig": {   
         "ip" : "127.0.0.1",
         "port" : 8441,
         "secure": true,
-        "Cloud_cert": "Arrowhead/certificates/systemregistry.p12",
+        "Cloud_cert": "Arrowhead/certificates/cardemoconsumer.p12",
         "cert_pass": "123456"
     }
 }
