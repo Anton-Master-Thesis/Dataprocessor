@@ -3,7 +3,7 @@ import os
 import glob
 
 class SubscriptionManager:
-    subscriptions = []
+    subscriptions = {}
 
     @staticmethod
     def loadSubscriptions():
@@ -15,4 +15,4 @@ class SubscriptionManager:
                 cleanSubsPath.append(sub)
         for sub in cleanSubsPath:
             with open(sub, 'r') as f:
-                SubscriptionManager.subscriptions.append(json.load(f))
+                SubscriptionManager.subscriptions[os.path.basename(sub)] = (json.load(f))

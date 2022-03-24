@@ -1,3 +1,4 @@
+import tracemalloc
 from Arrowhead.EventHandler.Subscriptions import SubscriptionManager
 from Arrowhead.Orchestration.Orchestration import Orchestrator
 from Arrowhead import SystemConfig
@@ -54,6 +55,39 @@ class EventHandler:
         systemConfig = SystemConfig.loadConfig()
         certConfig = systemConfig["cert"]
 
-        adress = ehSystem["address"] + ":" + str(ehSystem["port"]) + "/eventhandler/echo"
+        adress = ehSystem["address"] + ":" + str(ehSystem["port"]) + self.ehDesc["serviceUri"]
 
-        pass
+        for file, sub in SubscriptionManager.subscriptions.items():
+            payload = {}
+
+            payload["eventType"] = sub["eventType"]
+            try:
+                payload["filterMetaData"] = sub["filterMetaData"]
+                payload["matchMetaData"] = True
+            except:
+                payload["matchMetaData"] = False
+
+            payload["notifyUri"] = sub["notifyUri"]
+
+            try:
+                payload["sources"] = sub["sources"]
+            except:
+                pass
+            
+            payload["subscriberSystem"] = systemConfig["system"]
+
+            if security.lower() == "certificate":
+                # Need to disable warning because AH main cert is not trusted
+                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+                tracemalloc.start()
+                # Need to not verify cert because AH main cert is not trusted (verify=False)
+                response = post("https://" + adress, pkcs12_filename=certConfig["cloud_cert"], pkcs12_password=certConfig["cert_pass"], verify=False, json=payload)
+                # Reset warnings in case we need to verify other requests
+                warnings.resetwarnings()
+            elif security.lower() == "not_secure":
+                response = post("http://" + adress, json=payload)
+
+            if response.status_code != requests.codes.ok:
+                print("unable to subscribe to " + file)
+                print(response.status_code, response.text)

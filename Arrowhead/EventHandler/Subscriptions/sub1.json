@@ -1,9 +1,9 @@
 {
-    "event-type": "test1",
+    "eventType": "test1",
     "filterMetadata": {
         "prop1": "prop2"
     },
-    "nofifyUri": "/test/data",
+    "notifyUri": "/test/data",
     "sources": [
         {
             "address": "127.0.0.1",
