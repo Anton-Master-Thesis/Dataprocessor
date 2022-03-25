@@ -1,4 +1,3 @@
-import tracemalloc
 from Arrowhead.EventHandler.Subscriptions import SubscriptionManager
 from Arrowhead.Orchestration.Orchestration import Orchestrator
 from Arrowhead.Orchestration.Services import ServiceManager
@@ -7,7 +6,6 @@ from requests_pkcs12 import get, post, delete
 import urllib3
 import warnings
 import requests
-import json
 
 
 class EventHandler:
