@@ -84,8 +84,6 @@ class EventHandler:
             if security.lower() == "certificate":
                 # Need to disable warning because AH main cert is not trusted
                 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-                tracemalloc.start()
                 # Need to not verify cert because AH main cert is not trusted (verify=False)
                 response = post("https://" + address, pkcs12_filename=certConfig["cloud_cert"], pkcs12_password=certConfig["cert_pass"], verify=False, json=payload)
                 # Reset warnings in case we need to verify other requests
