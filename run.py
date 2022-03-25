@@ -10,3 +10,4 @@ if __name__ == "__main__":
     eh = EventHandler()
     eh.testConnection()
     eh.subscribe()
+    eh.unsibscribe()
