@@ -93,7 +93,6 @@ class EventHandler:
 
             if response.status_code != requests.codes.ok:
                 failedSubscriptions[file] = response.text
-                print("unable to subscribe to " + file)
         
         if failedSubscriptions:
             raise Exception("Some subscriptions could not be completed", failedSubscriptions)
