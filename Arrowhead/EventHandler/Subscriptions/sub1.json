@@ -1,0 +1,7 @@
+{
+    "eventType": "test1",
+    "filterMetadata": {
+        "prop1": "prop2"
+    },
+    "notifyUri": "/test/data"
+}

@@ -1,0 +1,12 @@
+{
+    "system": {
+        "systemName": "cardemoconsumer",
+        "address": "127.0.0.1",
+        "port": 8910,
+        "authenticationInfo": ""
+    },
+    "cert": {
+        "cloud_cert": "Arrowhead/certificates/cardemoconsumer.p12",
+        "cert_pass": "123456"
+    }
+}
