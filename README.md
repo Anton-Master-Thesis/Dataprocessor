@@ -24,6 +24,10 @@ install required libraries
 
 > pip install -r requirements.txt
 
+run the project
+
+> python run.py
+
 ## Configuration
 There are several configuration/description files.
 These determine what is sent to the core systems.
