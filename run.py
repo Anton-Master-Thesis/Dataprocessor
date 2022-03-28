@@ -3,11 +3,14 @@ from Arrowhead.EventHandler.EventHandler import EventHandler
 from flaskapp import app
 
 if __name__ == "__main__":
-    #app.run(debug=True, host="0.0.0.0")
-    # orch = Orchestrator()
-    # orch.testConnection()
-    # orch.orchestrate()
     eh = EventHandler()
     eh.testConnection()
     eh.subscribe()
+    print("Events Subscribed")
+    app.run(debug=True, host="0.0.0.0", port=8910)
     eh.unsibscribe()
+    print("Events Unsubscribed")
+    # orch = Orchestrator()
+    # orch.testConnection()
+    # orch.orchestrate()
+    #eh.unsibscribe()

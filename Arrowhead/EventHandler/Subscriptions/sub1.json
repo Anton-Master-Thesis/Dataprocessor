@@ -1,7 +1,15 @@
 {
-    "eventType": "test1",
-    "filterMetadata": {
-        "prop1": "prop2"
+    "eventType": "temperature",
+    "filterMetaData": {
+        "floor": "1"
     },
-    "notifyUri": "/test/data"
+    "notifyUri": "/test/data",
+    "sources": [   
+        {
+            "systemName": "cardemoprovider",
+            "authenticationInfo":"",
+            "port": 8911,
+            "address": "127.0.0.1"
+        }
+    ]
 }

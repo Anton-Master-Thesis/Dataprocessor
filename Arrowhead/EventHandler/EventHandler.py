@@ -7,6 +7,7 @@ import urllib3
 import warnings
 import requests
 
+import json
 
 class EventHandler:
     def __init__(self):
@@ -80,6 +81,7 @@ class EventHandler:
                 pass
             
             payload["subscriberSystem"] = systemConfig["system"]
+            print(json.dumps(payload))
 
             if security.lower() == "certificate":
                 # Need to disable warning because AH main cert is not trusted

@@ -1,7 +1,7 @@
 {
-    "eventType": "test2",
-    "filterMetadata": {
-        "prop1": "prop2"
+    "eventType": "pressure",
+    "filterMetaData": {
+        "floor": "1"
     },
-    "notifyUri": "/test/data"
+    "notifyUri": "/test/data2"
 }
