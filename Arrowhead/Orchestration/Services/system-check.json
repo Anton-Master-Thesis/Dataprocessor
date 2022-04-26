@@ -1,0 +1,16 @@
+{
+    "requestedService": {
+        "serviceDefinitionRequirement": "temperature",
+        "interfaceRequirements": [
+            "HTTP-SECURE-JSON",
+            "HTTP-INSECURE-JSON"
+        ],
+        "securityRequirements": [
+            "CERTIFICATE",
+            "NOT_SECURE"
+        ]
+    },
+    "orchestrationFlags": {
+        "overrideStore": true
+    }
+}

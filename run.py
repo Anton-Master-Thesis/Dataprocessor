@@ -3,7 +3,7 @@ from Arrowhead.EventHandler.EventHandler import EventHandler
 from flaskapp import app
 
 if __name__ == "__main__":
-    eh = EventHandler()
+    eh = EventHandler.getInstance()
     eh.testConnection()
     eh.subscribe()
     print("Events Subscribed")

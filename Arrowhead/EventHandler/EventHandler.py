@@ -10,11 +10,23 @@ import requests
 import json
 
 class EventHandler:
+    instanced = False
+
+    @staticmethod
+    def getInstance():
+        if not EventHandler.instanced:
+            EventHandler.instance = EventHandler()
+            EventHandler.instanced = True
+            
+        return EventHandler.instance
+
+
     def __init__(self):
         orch = Orchestrator()
         orch.testConnection()
         orchServices = orch.orchestrate()
         self.ehServices = {}
+        self.publishers = {}
         for key in ServiceManager.services.keys():
             if key not in orchServices.keys():
                 raise Exception("Unable to orchestrate required services")
@@ -22,7 +34,10 @@ class EventHandler:
         # Pick the first option for each service
         # More rigorous selection can be implemented
         for service, orchResponse in orchServices.items():
-            self.ehServices[service] = orchResponse["response"][0]
+            if service in ["event-subscribe", "event-unsubscribe"]:
+                self.ehServices[service] = orchResponse["response"][0]
+            else:
+                self.publishers[service] = orchResponse["response"]
             
 
 
@@ -135,3 +150,6 @@ class EventHandler:
 
         if failedUnSub:
             raise Exception("Some unsubscriptions could not be completed", failedUnSub)
+
+    def getPublishers(self):
+        return self.publishers
